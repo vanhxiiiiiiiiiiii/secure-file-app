@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+
+{% block title %}Share File - SecureFile{% endblock %}
+
+{% block content %}
+
+<div class="max-w-3xl mx-auto px-6 py-12">
+
+    <!-- Header -->
+
+    <div class="mb-8">
+
+        <div class="text-indigo-600 font-semibold mb-2">
+            File Sharing
+        </div>
+
+        <h1 class="text-4xl font-bold text-slate-900">
+            Share File
+        </h1>
+
+        <p class="text-slate-500 mt-2">
+            Share this file with another registered user.
+        </p>
+
+    </div>
+
+
+    <!-- File information -->
+
+    <div
+        class="bg-white rounded-2xl
+               border border-slate-200
+               shadow-sm p-6 mb-6"
+    >
+
+        <div class="flex items-center gap-4">
+
+            <div
+                class="w-14 h-14 rounded-xl
+                       bg-indigo-50
+                       flex items-center justify-center
+                       text-indigo-600"
+            >
+
+                <i class="fa-solid fa-file text-xl"></i>
+
+            </div>
+
+
+            <div>
+
+                <div class="font-bold text-slate-900">
+                    {{ file.original_filename }}
+                </div>
+
+                <div class="text-sm text-slate-500">
+                    {{ file.file_size }} bytes
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Share form -->
+
+    <div
+        class="bg-white rounded-2xl
+               border border-slate-200
+               shadow-sm p-8"
+    >
+
+        <form
+            method="POST"
+            action="{{ url_for(
+                'files.share_file',
+                file_id=file.id
+            ) }}"
+        >
+
+            <label
+                for="username"
+                class="block text-sm font-semibold
+                       text-slate-700 mb-2"
+            >
+
+                Recipient Username
+
+            </label>
+
+
+            <div class="relative mb-6">
+
+                <div
+                    class="absolute inset-y-0 left-0
+                           pl-4 flex items-center
+                           text-slate-400"
+                >
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    required
+                    autocomplete="off"
+                    placeholder="Enter username"
+                    class="w-full
+                           pl-11 pr-4 py-3
+                           rounded-xl
+                           border border-slate-300
+                           focus:outline-none
+                           focus:ring-2
+                           focus:ring-indigo-500
+                           focus:border-indigo-500"
+                >
+
+            </div>
+
+
+            <!-- Permission -->
+
+            <div
+                class="mb-8 p-4 rounded-xl
+                       bg-slate-50
+                       border border-slate-200"
+            >
+
+                <div
+                    class="flex items-center gap-3"
+                >
+
+                    <div
+                        class="w-10 h-10 rounded-lg
+                               bg-blue-50
+                               flex items-center justify-center
+                               text-blue-600"
+                    >
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <div class="font-semibold text-slate-900">
+                            Download access
+                        </div>
+
+                        <div class="text-sm text-slate-500">
+                            The recipient can download this file.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Buttons -->
+
+            <div
+                class="flex items-center justify-end gap-3"
+            >
+
+                <a
+                    href="{{ url_for('files.files') }}"
+                    class="px-5 py-3
+                           rounded-xl
+                           border border-slate-300
+                           text-slate-600
+                           font-semibold
+                           hover:bg-slate-50"
+                >
+                    Cancel
+                </a>
+
+
+                <button
+                    type="submit"
+                    class="px-6 py-3
+                           rounded-xl
+                           bg-indigo-600
+                           text-white
+                           font-semibold
+                           hover:bg-indigo-700
+                           transition"
+                >
+
+                    <i class="fa-solid fa-share-nodes mr-2"></i>
+
+                    Share File
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

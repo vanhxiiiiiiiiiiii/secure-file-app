@@ -1,0 +1,25 @@
+Hãy viết mã nguồn HTML sử dụng cú pháp Jinja2 Template Engine cho bộ giao diện web theo đúng cấu trúc thư mục sau:
+
+templates/
+├── base.html
+├── login.html
+├── register.html
+├── dashboard.html
+└── upload.html
+
+Yêu cầu Kỹ thuật & Thiết kế:
+1. Thư viện & Công nghệ: 
+   - Dùng HTML5 kết hợp Jinja2 (kế thừa từ base.html bằng {% extends "base.html" %}).
+   - Tích hợp CDN Tailwind CSS và Font Awesome (icons) trực tiếp trong base.html để giao diện đẹp ngay lập tức mà không cần file CSS phụ.
+
+2. Phong cách Thiết kế (UI/UX):
+   - Phong cách Modern & Clean: Tone màu chuyên nghiệp (Slate/Indigo hoặc Dark mode), góc bo viền mượt (rounded-xl), hiệu ứng bóng (soft shadow) và hiệu ứng hover mượt mà.
+   - Responsive 100% trên Mobile, Tablet và Desktop.
+
+3. Yêu cầu chi tiết từng file:
+   - `base.html`: Thẻ <head> hoàn chỉnh, thanh Navbar linh hoạt, hệ thống alert/flash message, container `{% block content %}{% endblock %}`, và Footer.
+   - `login.html` & `register.html`: Khung Form đặt trung tâm màn hình (Card layout), có icon ở các ô input, nút Submit nổi bật và link chuyển đổi giữa 2 trang.
+   - `dashboard.html`: Trang quản trị gồm các thẻ Stat Cards (như Tổng file, Dung lượng, Lượt truy cập), biểu đồ demo hoặc Bảng danh sách hoạt động gần đây (Recent activity table).
+   - `upload.html`: Khu vực tải tệp hỗ trợ Drag & Drop trực quan, hiển thị preview thông tin file và thanh tiến trình (Progress bar).
+
+Vui lòng cung cấp mã nguồn đầy đủ, chuẩn SEO và có sẵn placeholder chuyên nghiệp cho từng file.

@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% block title %}Shared With Me - SecureFile{% endblock %}
+
+{% block content %}
+
+<div class="max-w-7xl mx-auto px-6 py-12">
+
+    <div class="mb-8">
+
+        <div class="text-indigo-600 font-semibold mb-2">
+            File Sharing
+        </div>
+
+        <h1 class="text-4xl font-bold text-slate-900">
+            Shared With Me
+        </h1>
+
+        <p class="text-slate-500 mt-2">
+            Files that other users have shared with you.
+        </p>
+
+    </div>
+
+
+    {% if shared_files %}
+
+        <div
+            class="bg-white rounded-2xl
+                   border border-slate-200
+                   shadow-sm overflow-hidden"
+        >
+
+            <div class="overflow-x-auto">
+
+                <table class="w-full">
+
+                    <thead class="bg-slate-50 border-b">
+
+                        <tr>
+
+                            <th class="text-left px-6 py-4 text-sm">
+                                File
+                            </th>
+
+                            <th class="text-left px-6 py-4 text-sm">
+                                Permission
+                            </th>
+
+                            <th class="text-left px-6 py-4 text-sm">
+                                Shared At
+                            </th>
+
+                            <th class="text-right px-6 py-4 text-sm">
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody class="divide-y">
+
+                        {% for item in shared_files %}
+
+                            {% set file = item.file %}
+                            {% set access = item.access %}
+
+                            <tr class="hover:bg-slate-50">
+
+                                <td class="px-6 py-5">
+
+                                    <div class="flex items-center gap-4">
+
+                                        <div
+                                            class="w-11 h-11 rounded-xl
+                                                   bg-indigo-50
+                                                   flex items-center justify-center
+                                                   text-indigo-600"
+                                        >
+
+                                            <i class="fa-solid fa-file"></i>
+
+                                        </div>
+
+
+                                        <div>
+
+                                            <div class="font-semibold text-slate-900">
+                                                {{ file.original_filename }}
+                                            </div>
+
+                                            <div class="text-xs text-slate-400">
+                                                Shared file
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td class="px-6 py-5">
+
+                                    <span
+                                        class="inline-flex items-center
+                                               px-3 py-1 rounded-full
+                                               bg-blue-50
+                                               text-blue-700
+                                               text-xs font-semibold"
+                                    >
+
+                                        <i class="fa-solid fa-eye mr-1"></i>
+
+                                        Read
+
+                                    </span>
+
+                                </td>
+
+
+                                <td class="px-6 py-5 text-sm text-slate-500">
+
+                                    {% if access.granted_at %}
+
+                                        {{ access.granted_at.strftime(
+                                            "%d/%m/%Y %H:%M"
+                                        ) }}
+
+                                    {% else %}
+
+                                        —
+
+                                    {% endif %}
+
+                                </td>
+
+
+                                <td class="px-6 py-5">
+
+                                    <div class="flex justify-end">
+
+                                        <a
+                                            href="{{ url_for(
+                                                'files.download_file',
+                                                file_id=file.id
+                                            ) }}"
+                                            class="px-4 py-2
+                                                   rounded-lg
+                                                   bg-indigo-600
+                                                   text-white
+                                                   text-sm
+                                                   font-semibold
+                                                   hover:bg-indigo-700"
+                                        >
+
+                                            <i class="fa-solid fa-download mr-2"></i>
+
+                                            Download
+
+                                        </a>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+    {% else %}
+
+        <div
+            class="bg-white rounded-2xl
+                   border border-slate-200
+                   shadow-sm
+                   min-h-[400px]
+                   flex items-center justify-center"
+        >
+
+            <div class="text-center">
+
+                <div
+                    class="w-20 h-20 mx-auto mb-6
+                           rounded-2xl
+                           bg-slate-100
+                           flex items-center justify-center
+                           text-slate-400"
+                >
+
+                    <i class="fa-solid fa-share-nodes text-3xl"></i>
+
+                </div>
+
+                <h2 class="text-xl font-bold text-slate-900">
+                    No shared files
+                </h2>
+
+                <p class="text-slate-500 mt-2">
+                    No one has shared a file with you yet.
+                </p>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
