@@ -1,5 +1,6 @@
 .env
 .env.*
+!.env.example
 *.pem
 *.key
 __pycache__/
@@ -8,3 +9,5 @@ venv/
 .venv/
 instance/
 *.db
+storage/files/*
+!storage/files/.gitkeep
